@@ -34,7 +34,7 @@ public class EmployeeController {
 		this.employeeService = employeeService;
 	}
 	
-	@PreAuthorize("hasRole('ADMIN', 'SUPER_ADMIN')")
+	@PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public EmployeeResponsedto createEmployee(@Valid @RequestBody EmployeeRequestdto request) {
@@ -65,13 +65,13 @@ public class EmployeeController {
 		return employeeService.getEmployeeById(id);
 	}
 	
-	@PreAuthorize("hasRole('ADMIN', 'SUPER_ADMIN')")
+	@PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
 	@PutMapping("/{id}")
 	public EmployeeResponsedto updateEmployee(@PathVariable Long id, @Valid @RequestBody EmployeeRequestdto request) {
 		return employeeService.updateEmployee(id, request);
 	}
 	
-	@PreAuthorize("hasRole('ADMIN', 'SUPER_ADMIN')")
+	@PreAuthorize("hasAnyRole('ADMIN', 'SUPER_ADMIN')")
 	@DeleteMapping("/{id}")
 	public ApiResponse deleteEmployee(@PathVariable Long id) {
 		
